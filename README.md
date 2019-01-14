@@ -30,8 +30,6 @@ SECRET='letmein'
 PATH='/apath/afile'
 
 def sync_test():
-    global WAREHOUSE, SIGNER, SECRET, PATH
-
     client = crushfs.SyncClient(
             warehouse=WAREHOUSE, signer=SIGNER, secret=SECRET)
     response = client.download_object(path=PATH)
