@@ -24,13 +24,15 @@ class SyncClient(Client):
                 image_transform=image_transform)
         r = requests.get(download_url)
         response = SyncResponse(
-                status_code=r.status_code, 
+                status_code=r.status_code,
+                content_type=r.content_type,
                 data=r.content)
         return response
 
 
 class SyncResponse:
-    def __init__(self, *, status_code, data):
+    def __init__(self, *, status_code, content_type, data):
         self.status_code=status_code
+        self.content_type=content_type
         self.data=data
 
