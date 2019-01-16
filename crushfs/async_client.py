@@ -24,12 +24,14 @@ class AsyncClient(Client):
         async with aiohttp.request('GET', download_url) as r:
             response = AsyncResponse(
                     status_code=r.status,
+                    content_type=r.content_type,
                     data=await r.read())
             return response
 
 
 class AsyncResponse:
-    def __init__(self, *, status_code, data):
+    def __init__(self, *, status_code, content_type, data):
+        self.content_type=content_type
         self.status_code=status_code
         self.data=data
 
